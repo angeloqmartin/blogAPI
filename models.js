@@ -1,3 +1,19 @@
+// app requirements => 
+
+// > Use npm init to initialize your project
+// > Install uuid (Node package) run npm install uuid within 
+// > App should support the four CRUD operations for a blog posts resource
+    // GET and POST requests should go to /blog-posts.
+    // DELETE and PUT requests should go to /blog-posts/:id.
+// > Use Express router and modularize routes to /blog-posts
+// > Add a couple of blog posts on server load
+
+// Note that to create a new blog post, 
+// you need to supply a title, content, an author name, 
+// and (optionally) a publication date
+
+
+
 const uuid = require('uuid');
 
 // This module provides volatile storage, using a `BlogPost`
