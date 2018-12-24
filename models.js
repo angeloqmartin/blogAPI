@@ -8,8 +8,9 @@
 // > Use Express router and modularize routes to /blog-posts
 // > Add a couple of blog posts on server load
 
-// Note that to create a new blog post, 
-// you need to supply a title, content, an author name, 
+// Note => 
+
+// to create a new blog post, supply a title, content, an author name
 // and (optionally) a publication date
 
 
