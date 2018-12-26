@@ -14,8 +14,10 @@
 // and (optionally) a publication date
 
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express();
+const jsonParser = bodyParse.json();
 
 const uuid = require('uuid');
 
@@ -98,6 +100,11 @@ BlogPosts.create(
 app.get('/blog-post', (res, req) => {
   res.json(BlogPosts.get());
 });
+
+app.post('/blog-post', jsonParser,(req, res) => {
+  const item = BlogPosts.create(req.body.title, req.body.content, req.body.author)
+  res.status(201).json(item);
+})
 
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
