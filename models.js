@@ -14,7 +14,6 @@
 // and (optionally) a publication date
 
 const express = require('express')
-
 const bodyParser = require('body-parser')
 
 const app = express();
@@ -98,13 +97,27 @@ BlogPosts.create(
     'Johe Doe'
 );
 
-app.get('/blog-post', (res, req) => {
+app.get('/blog-post', (req, res) => {
   res.json(BlogPosts.get());
 });
 
 app.post('/blog-post', jsonParser,(req, res) => {
   const item = BlogPosts.create(req.body.title, req.body.content, req.body.author)
   res.status(201).json(item);
+})
+
+app.delete('/blog-post/:id', (req, res) => {
+  BlogPosts.delete(req.params.id);
+  res.status(204).end();
+})
+
+app.put('/blog-post/:id', (req, res) => {
+  BlogPosts.update({
+    title: req.params.id,
+    content: req.body.content,
+    author: req.body.author
+  });
+  res.status(204).end();
 })
 
 function createBlogPostsModel() {
