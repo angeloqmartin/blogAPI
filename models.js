@@ -13,7 +13,9 @@
 // to create a new blog post, supply a title, content, an author name
 // and (optionally) a publication date
 
+const express = require('express')
 
+const app = express();
 
 const uuid = require('uuid');
 
@@ -92,6 +94,8 @@ BlogPosts.create(
     'Challenge to re-enforce material such as CRUD',
     'Johe Doe'
 );
+
+app
 
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
