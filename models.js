@@ -95,7 +95,9 @@ BlogPosts.create(
     'Johe Doe'
 );
 
-app
+app.get('/blog-post', (res, req) => {
+  res.json(BlogPosts.get());
+});
 
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
