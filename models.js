@@ -77,6 +77,22 @@ const BlogPosts = {
   }
 };
 
+BlogPosts.create(
+    'What is CRUD?',
+    'CRUD is the the four basic functions of persistent storage which are create, read, update, and delete',
+    'anonymous'
+);
+BlogPosts.create(
+    'Is Thinkful bootcamp legit?',
+    'I have found thinkful helpful move forward with a career in devolpment.',
+    'Reign'
+);
+BlogPosts.create(
+    'My Blog API Challenge',
+    'Challenge to re-enforce material such as CRUD',
+    'Johe Doe'
+);
+
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
   storage.posts = [];
@@ -84,4 +100,4 @@ function createBlogPostsModel() {
 }
 
 
-module.exports = {BlogPosts: createBlogPostsModel()};
+module.exports = {BlogPosts: createBlogitgPostsModel()};
