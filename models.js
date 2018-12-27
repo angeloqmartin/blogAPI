@@ -13,27 +13,20 @@
 // to create a new blog post, supply a title, content, an author name
 // and (optionally) a publication date
 
-const express = require('express')
-const bodyParser = require('body-parser')
-
-const app = express();
-const jsonParser = bodyParse.json();
-
 const uuid = require('uuid');
 
-// This module provides volatile storage, using a `BlogPost`
+// this module provides volatile storage, using a `BlogPost`
 // model. We haven't learned about databases yet, so for now
 // we're using in-memory storage. This means each time the app stops, our storage
 // gets erased.
 
-// Don't worry too much about how BlogPost is implemented.
+// don't worry to much about how BlogPost is implemented.
 // Our concern in this example is with how the API layer
 // is implemented, and getting it to use an existing model.
 
-
 function StorageException(message) {
-   this.message = message;
-   this.name = "StorageException";
+  this.message = message;
+  this.name = "StorageException";
 }
 
 const BlogPosts = {
@@ -48,7 +41,7 @@ const BlogPosts = {
     this.posts.push(post);
     return post;
   },
-  get: function(id=null) {
+  get: function(id = null) {
     // if id passed in, retrieve single post,
     // otherwise send all posts.
     if (id !== null) {
@@ -57,68 +50,27 @@ const BlogPosts = {
     // return posts sorted (descending) by
     // publish date
     return this.posts.sort(function(a, b) {
-      return b.publishDate - a.publishDate
+      return b.publishDate - a.publishDate;
     });
   },
   delete: function(id) {
-    const postIndex = this.posts.findIndex(
-      post => post.id === id);
+    const postIndex = this.posts.findIndex(post => post.id === id);
     if (postIndex > -1) {
       this.posts.splice(postIndex, 1);
     }
   },
   update: function(updatedPost) {
-    const {id} = updatedPost;
-    const postIndex = this.posts.findIndex(
-      post => post.id === updatedPost.id);
+    const { id } = updatedPost;
+    const postIndex = this.posts.findIndex(post => post.id === updatedPost.id);
     if (postIndex === -1) {
-      throw new StorageException(
-        `Can't update item \`${id}\` because doesn't exist.`)
+      throw StorageException(
+        `Can't update item \`${id}\` because doesn't exist.`
+      );
     }
-    this.posts[postIndex] = Object.assign(
-      this.posts[postIndex], updatedPost);
+    this.posts[postIndex] = Object.assign(this.posts[postIndex], updatedPost);
     return this.posts[postIndex];
   }
 };
-
-BlogPosts.create(
-    'What is CRUD?',
-    'CRUD is the the four basic functions of persistent storage which are create, read, update, and delete',
-    'anonymous'
-);
-BlogPosts.create(
-    'Is Thinkful bootcamp legit?',
-    'I have found thinkful helpful move forward with a career in devolpment.',
-    'Reign'
-);
-BlogPosts.create(
-    'My Blog API Challenge',
-    'Challenge to re-enforce material such as CRUD',
-    'Johe Doe'
-);
-
-app.get('/blog-post', (req, res) => {
-  res.json(BlogPosts.get());
-});
-
-app.post('/blog-post', jsonParser,(req, res) => {
-  const item = BlogPosts.create(req.body.title, req.body.content, req.body.author)
-  res.status(201).json(item);
-})
-
-app.delete('/blog-post/:id', (req, res) => {
-  BlogPosts.delete(req.params.id);
-  res.status(204).end();
-})
-
-app.put('/blog-post/:id', (req, res) => {
-  BlogPosts.update({
-    title: req.params.id,
-    content: req.body.content,
-    author: req.body.author
-  });
-  res.status(204).end();
-})
 
 function createBlogPostsModel() {
   const storage = Object.create(BlogPosts);
@@ -126,5 +78,4 @@ function createBlogPostsModel() {
   return storage;
 }
 
-
-module.exports = {BlogPosts: createBlogitgPostsModel()};
+module.exports = { BlogPosts: createBlogPostsModel() };
