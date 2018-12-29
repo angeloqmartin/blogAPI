@@ -3,7 +3,7 @@ const router = express.Router();
 
 const bodyParser = require('body-parser')
 
-const jsonParser = bodyParse.json();
+const jsonParser = bodyParser.json();
 
 
 const {BlogPosts} = require('./models');
