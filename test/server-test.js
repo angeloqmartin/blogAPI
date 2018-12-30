@@ -4,6 +4,7 @@ const { app, runServer, closeServer } = require("../server");
 const expect = chai.expect;
 
 chai.use(chaiHttp);
+app.use(morgan('combined'));
 
 describe("Shopping List", function() {
     before(function() {
