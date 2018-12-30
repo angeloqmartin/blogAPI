@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-t; vvcconst {BlogPosts} = require('./models');
+const {BlogPosts} = require('./models');
 
 BlogPosts.create(
     'What is CRUD?',

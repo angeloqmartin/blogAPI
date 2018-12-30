@@ -1,11 +1,14 @@
 const express = require("express");
 const morgan = require("morgan");
-const app = express();
+
 const blogRouter = require("./blogRouter");
+const app = express();
 
 app.use(express.json());
-app.use("/blog-post", blogRouter)
+
 app.use(morgan("common"));
+
+app.use("/blog-post", blogRouter)
 
 let server;
 
