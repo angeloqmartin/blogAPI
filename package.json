@@ -4,11 +4,12 @@
   "description": "",
   "main": "models.js",
   "scripts": {
-    "test":  "mocha --exit"
+    "test": "mocha --exit"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "chai": "^4.2.0",
     "express": "^4.16.4",
     "uuid": "^3.3.2"
   },
