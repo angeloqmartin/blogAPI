@@ -4,7 +4,6 @@ const { app, runServer, closeServer } = require("../server");
 const expect = chai.expect;
 
 chai.use(chaiHttp);
-app.use(morgan('combined'));
 
 describe("Shopping List", function() {
     before(function() {
@@ -24,15 +23,30 @@ describe("Shopping List", function() {
         .request(app)
         .get("/BlogPosts")
         .then(function(res) {
-          expect(res).to.have.status(200);
-          expect(res).to.be.json;
-          expect(res.body).to.be.a("array");
-          expect(res.body.length).to.be.at.least(1);
-          const expectedKeys = ["title", "content", "author"];
-          res.body.forEach(function(item) {
-            expect(item).to.be.a("object");
-            expect(item).to.include.keys(expectedKeys);
-          });
+            expect(res.body).to.be.a("object");
         });
     });
+
+    // test strategy:
+    //  1. make POST request with data for a new item
+    //  2. inspect response object and prove it has right
+    //  2a. status code and that the returned object has an `id`
+
+    it("should add an item on git ", function() {
+        const newItem = { name: "coffee", ingredients: ["water", "beans"] };
+        return chai
+        .request(app)
+        .post("/recipes")
+        .send(newItem)
+        .then(function(res) {
+            expect(res).to.have.status(201);
+            // expect(res).to.be.json;
+            // expect(res).to.be.a("object");
+            // expect(res.body.id).to.not.equal(null);
+            // expect(res.body).to.include.keys('id', 'name', 'ingredients');
+            // expect(res.body.name).to.be.equal(newItem.name);
+            // expect(res.body.ingredients).to.be.a('array');
+            // expect(res.body.ingredients).to.include.members(newItem.ingredients);
+        }); 
+    });    
   });
