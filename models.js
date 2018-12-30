@@ -41,6 +41,7 @@ const BlogPosts = {
     this.posts.push(post);
     return post;
   },
+  
   get: function(id = null) {
     // if id passed in, retrieve single post,
     // otherwise send all posts.
@@ -53,12 +54,14 @@ const BlogPosts = {
       return b.publishDate - a.publishDate;
     });
   },
+
   delete: function(id) {
     const postIndex = this.posts.findIndex(post => post.id === id);
     if (postIndex > -1) {
       this.posts.splice(postIndex, 1);
     }
   },
+
   update: function(updatedPost) {
     const { id } = updatedPost;
     const postIndex = this.posts.findIndex(post => post.id === updatedPost.id);
