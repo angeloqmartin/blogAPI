@@ -36,7 +36,7 @@ describe("Shopping List", function() {
     });  
 
     // test strategy:
-    //  1. make a POST request with data for a new item
+    //  1. make a POST request with data for a new Blog Post
     //  2. inspect response object and prove it has right
     //  status code and that the returned object has an `id`
 
@@ -53,4 +53,37 @@ describe("Shopping List", function() {
             expect(res.body.id).not.to.equal(null);
         });
     });
-  });
+
+    // test strategy:
+    //  1. initialize some update data 
+    //  2. make a GET request so we can get an blog post to update
+    //  3. add `id` to `updateData`
+    //  4. Make a PUT request with `updateData`
+    //  5. Inspect the response object to ensure it
+    //  has right status code and that we get back an updated
+    //  item with the right data in it.
+
+    it("should update blog posts on PUT", function() {
+        const updatePost = {
+            name: "New post",
+            content: "here lies new content to test"
+        }
+        return chai
+        .request(app)
+        .get("/blog-post").then(function(res) {
+            updatePost.id = res.body[0].id;
+
+            // will return promise whose value will be the response object
+            // which we can inspect in the next `then` block 
+            return chai
+            .request(app)
+            .put(`/blog-post/${updatePost.id}`)
+            .send(updatePost);
+        })
+        .then(function(res) {
+            expect(res).to.have.status(400);
+            expect(res.body).to.be.a("object");
+            // expect(res.body).to.equal(updatePost);
+        })
+    })
+});
