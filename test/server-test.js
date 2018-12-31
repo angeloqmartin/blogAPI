@@ -81,7 +81,7 @@ describe("Shopping List", function() {
             .send(updatePost);
         })
         .then(function(res) {
-            expect(res).to.have.status(400);
+            expect(res).to.have.status(204);
             expect(res.body).to.be.a("object");
             // expect(res.body).to.equal(updatePost);
         })
