@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: mygxmZo9+RjbJOQfRSnuX4zcIle3Pc7H5Q8mcSCUEgHhtNdWGZYZyqnp5D2k2I1eEg7PZydG+Z2pjyygM6HIs3Ah6f5m6wVJ69SKJ60CpM2h45yFzIlCH/2s7B1O21MXtVIlwlu4aGXOq7TyuqNDGtfJDL6m/E3PXXxrOAgBA5hWFMXDj5SygMobDENr/6lRohAFUyZYA+ON91u+VR3ggfjh/ya78sHvVoFQf9FNQYZNQYAnyuo3xFpFVadYsdf4oWWgKkhJW5PDPjzhs0gwY+vYf0Q8xIQ7INEtj4TDwvba5brxqc7yWnzk1pltjgt4ychNvXJFqeWpD2/mMmQpXQ0ktNI0Vcb/iZhuiqbBKkA8zI97kdSkeUuyRWoMGDInX+zutkg14Q+jwU76mG7Lfd8npu1GT0pDjMaXdz4xeafrifR5VReJCN1jomjZ4h/4qME9VSsDYmxxXV6Cc4AEPcQBKH9/qzq9zOPA+Q+gx1Y3fuVvIB7bhJbaqJOBGfJcDIZ0KD0MMBzyRa/VV9+EbEnTrwbHy3tDs3zehvFIzzyhqb+0ET6vojNkHiwmTowpzraUI9uapO+PUwQ36BzUrVUJFZTq0gdGuWDSJ+B/Qu3jm2nO3BTHO6eKlnrt9qGSxCGGq8rHD80fp1UeOypaxBSiy7Y2R4awx2169bG/GMI=
+  app: limitless-citadel-34799
+  on:
+    repo: angeloqmartin/blogAPI
